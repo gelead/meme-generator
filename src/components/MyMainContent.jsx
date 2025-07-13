@@ -1,18 +1,22 @@
 import { useState } from "react";
 
 const MyMainContent = () => {
-   
-  const [top, setTop] = useState("")
-  const [bottom, setBottom] = useState("")
-  
-  const handleTop = () => {
-      const topInput = document.getElementById('top').value;
-      setTop(topInput)
-  }
-  const handleBottom = () => {
-      const bottomInput = document.getElementById('bottom').value;
-      setBottom(bottomInput)
-  }
+  const [top, setTop] = useState("Edit Top Caption");
+  const [bottom, setBottom] = useState("Edit Bottom Caption");
+  const [memeImage, setMemeImage] = useState(
+    "https://i.imgflip.com/a0568u.jpg"
+  );
+
+  const handleTop = (e) => setTop(e.target.value);
+  const handleBottom = (e) => setBottom(e.target.value);
+  const getMemeImage = async () => {
+    const res = await fetch("https://api.imgflip.com/get_memes");
+    const data = await res.json();
+    const memes = data.data.memes;
+    const randomMeme = memes[Math.floor(Math.random() * memes.length)];
+    setMemeImage(randomMeme.url);
+  };
+
   return (
     <main className="w-4/5 m-auto">
       <div className="flex m-auto border mt-3">
@@ -41,19 +45,25 @@ const MyMainContent = () => {
           />
         </div>
       </div>
-      <button className="bg-purple-700 cursor-pointer w-full text-xl rounded-xl py-3 text-white my-4 px-4">
-        Get a new meme image
+
+      <button
+        onClick={getMemeImage}
+        className="bg-purple-700 cursor-pointer w-full text-xl rounded-xl py-3 text-white my-4 px-4"
+      >
+        Generate new template
       </button>
+
       <div className="border relative">
         <img
-          className="w-4/5 m-auto"
-          src="https://i.imgflip.com/a0568u.jpg"
+          className="w-4/5 h-70 m-auto"
+          src={memeImage}
           alt="meme generator image"
         />
+
         <h1 className="text-4xl shadow-blue-950 decoration-pink-400 font-bold absolute top-3 left-44">
           {top}
         </h1>
-        <h1 className="text-4xl font-bold absolute top-55 left-44">
+        <h1 className="text-4xl font-bold absolute top-[13rem] left-44">
           {bottom}
         </h1>
       </div>

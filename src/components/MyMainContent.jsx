@@ -9,6 +9,7 @@ const MyMainContent = () => {
 
   const handleTop = (e) => setTop(e.target.value);
   const handleBottom = (e) => setBottom(e.target.value);
+
   const getMemeImage = async () => {
     const res = await fetch("https://api.imgflip.com/get_memes");
     const data = await res.json();
@@ -18,52 +19,67 @@ const MyMainContent = () => {
   };
 
   return (
-    <main className="w-4/5 m-auto">
-      <div className="flex m-auto border mt-3">
-        <div className="border px-2 py-2 flex-grow">
-          <label htmlFor="top" className="font-bold">
+    <main className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-extrabold text-center mb-8 text-purple-700">
+        Meme Generator 🎉
+      </h1>
+
+      {/* Inputs */}
+      <div className="flex flex-col sm:flex-row gap-6 mb-6">
+        <div className="flex flex-col flex-1">
+          <label htmlFor="top" className="mb-2 font-semibold text-gray-700">
             Top Text
           </label>
           <input
             id="top"
             onChange={handleTop}
             value={top}
-            className="border mt-1 rounded-sm w-full py-1 px-2"
             type="text"
+            placeholder="Enter top caption"
+            className="border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
           />
         </div>
-        <div className="border px-2 py-2 flex-grow">
-          <label htmlFor="bottom" className="font-bold">
+        <div className="flex flex-col flex-1">
+          <label htmlFor="bottom" className="mb-2 font-semibold text-gray-700">
             Bottom Text
           </label>
           <input
             id="bottom"
             onChange={handleBottom}
             value={bottom}
-            className="border mt-1 rounded-sm w-full py-1 px-2"
             type="text"
+            placeholder="Enter bottom caption"
+            className="border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-600 transition"
           />
         </div>
       </div>
 
+      {/* Button */}
       <button
         onClick={getMemeImage}
-        className="bg-purple-700 cursor-pointer w-full text-xl rounded-xl py-3 text-white my-4 px-4"
+        className="w-full bg-purple-700 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-purple-800 transition mb-8"
       >
-        Generate new template
+        Generate New Template
       </button>
 
-      <div className="border relative">
+      {/* Meme Display */}
+      <div className="relative bg-gray-100 rounded-lg shadow-md max-w-full mx-auto p-4">
         <img
-          className="w-4/5 h-70 m-auto"
           src={memeImage}
-          alt="meme generator image"
+          alt="meme generator"
+          className="w-full max-h-[400px] object-contain rounded-md"
         />
-
-        <h1 className="text-4xl shadow-blue-950 decoration-pink-400 font-bold absolute top-3 left-44">
+        {/* Captions */}
+        <h1
+          className="absolute top-4 left-1/2 transform -translate-x-1/2 px-2 text-4xl font-extrabold text-white drop-shadow-lg select-none pointer-events-none"
+          style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9)' }}
+        >
           {top}
         </h1>
-        <h1 className="text-4xl font-bold absolute top-[13rem] left-44">
+        <h1
+          className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-2 text-4xl font-extrabold text-white drop-shadow-lg select-none pointer-events-none"
+          style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.9)' }}
+        >
           {bottom}
         </h1>
       </div>

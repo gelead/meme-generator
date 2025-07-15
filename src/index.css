@@ -1,5 +1,18 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-body{
-  font-family: "Inter", sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+body {
+  font-family: Inter, sans-serif;
+  background-color: rgb(11, 36, 52);
+  font-size: 16px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main {
+  background-color: hsl(0, 4%, 89%);
+}
+#box {
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }

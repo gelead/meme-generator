@@ -1,12 +1,11 @@
 
-import MyHeader from './components/MyHeader'
-import MyMainContent from './components/MyMainContent'
+
+import Tenzi from './components/Tenzi'
 const App = () => {
 
   return(
     <div>
-     <MyHeader/>
-     <MyMainContent/>
+     <Tenzi/>
     </div>
   )
 };
